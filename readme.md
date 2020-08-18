@@ -14,7 +14,11 @@ A Nucleo board, in this example I will use a STM32L476-Nucleo
 
 A motions MEMS shield X-Nucleo-IKS01A3
 
-and finally an USB micro cable
+and finally an mini USB cable.
+
+The expansion MEMS shield is plugged on top of the Nucleo board which is connected to your PC with mini USB cable. See the below picture for your reference.
+
+<img src="Img\nucleo+shield.jpg" alt="nucleo+shield" style="zoom: 50%;" />
 
 
 
@@ -44,11 +48,11 @@ In this section, we will get familiar with CubeIDE & CubeMX tools.
 
 1. Launch STM32CubeIDE 1.14.0 software and start with a new STM32 Project as described below:
 
-![3-1](Img/3-1.png)
+<img src="Img/3-1.png" alt="3-1"  />
 
 2. Enter your board part number *(make sure you select a nucleo board)*
 
-   ![3-2](Img\3-2.png)
+   <img src="Img\3-2.png" alt="3-2" style="zoom:80%;" />
 
    
 
@@ -76,11 +80,11 @@ As mentioned before, STM32CubeMX is a project configuration tool, you can set al
 
 1. We will start by tuning the MCU clock at this highest value. Click on "Clock Configuration".
 
-   ![4-1](Img\4-1.png)
+   <img src="Img\4-1.png" alt="4-1" style="zoom:80%;" />
 
 2. Increase the HCLK at highest value depend on your Nucleo board (80 MHz for Nucleo L476 and 180 MHz for a F446 Nucleo)
 
-![4-2](Img\4-2.png)
+<img src="Img\4-2.png" alt="4-2" style="zoom:80%;" />
 
 
 
@@ -91,29 +95,29 @@ As mentioned before, STM32CubeMX is a project configuration tool, you can set al
    - Nucleo-144
      * *https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-stmicroelectronics.pdf*
 
-As you can find in the user manual, the USART2 (pin PA2 & PA3 of the MCU) is connected to ST-Link to support virtual COM port.![4-3](Img\4-3.png)
+As you can find in the user manual, the USART2 (pin PA2 & PA3 of the MCU) is connected to ST-Link to support virtual COM port.<img src="Img\4-3.png" alt="4-3" style="zoom:80%;" />
 
 
 
 So, we need to enable USART2 and assign his pins on PA2 and PA3 of the STM32. This can be done on CubeMX as follow:
 
-![4-3-2](Img\4-3-2.png)
+<img src="Img\4-3-2.png" alt="4-3-2" style="zoom:80%;" />
 
 4. Install and enable SW packages: **X-Cube-AI** & **X-Cube-MEMS1**
 
-   ![4-4](Img\4-4.png) 
+   <img src="Img\4-4.png" alt="4-4" style="zoom:80%;" /> 
 
    Click on **"From Local..."** to **select your zip folder which you downloaded from ST website** during the SW prerequisites. Once you have selected the zip folder, click on **"Install Now"**.
 
-![4-4-2](Img\4-4-2.png)
+<img src="Img\4-4-2.png" alt="4-4-2" style="zoom:80%;" />
 
-![4-4-3](C:\Users\nasirm\Documents\backup\Moussa_Doc\Demo\Motions\HAR-Nucleo\Img\4-4-3.png)
+<img src="C:\Users\nasirm\Documents\backup\Moussa_Doc\Demo\Motions\HAR-Nucleo\Img\4-4-3.png" alt="4-4-3" style="zoom:80%;" />
 
 You need to do this operation for both packages **X-Cube-AI** & **X-Cube-MEMS1**
 
 Now, that your SW packages are installed, the next step is to enable them as SW components in your project.
 
-![4-4-4](Img\4-4-4.png)
+<img src="Img\4-4-4.png" alt="4-4-4" style="zoom:80%;" />
 
 
 
@@ -123,7 +127,7 @@ Now, that your SW packages are installed, the next step is to enable them as SW 
 
    - *https://www.st.com/resource/en/user_manual/dm00601501-getting-started-with-the-xnucleoiks01a3-motion-mems-and-environmental-sensor-expansion-board-for-stm32-nucleo-stmicroelectronics.pdf*
 
-![5-1](Img\5-1.png)
+<img src="Img\5-1.png" alt="5-1" style="zoom:80%;" />
 
 ​		Now, check which STM32 PINs are available on the PINs P9 & P10 of the connector CN5.
 
@@ -135,7 +139,7 @@ Now, that your SW packages are installed, the next step is to enable them as SW 
 
   - *https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-stmicroelectronics.pdf*
 
-  ![5-2](Img\5-2.png)
+  <img src="Img\5-2.png" alt="5-2" style="zoom:80%;" />
 
   From the information collected on these user manual, in STM32CubeMX, we have to enable **I2C1 on PB8 and PB9 of the MCU**.
 
@@ -143,7 +147,7 @@ Now, that your SW packages are installed, the next step is to enable them as SW 
 
 6. Configure your **I2C1 peripheral** in your project, go on tab **"Connectivity"**
 
-![6-1](Img\6-1.png)
+<img src="Img\6-1.png" alt="6-1" style="zoom:80%;" />
 
 7. In this section, we will enable the **"interruption mode"** 
 
@@ -151,7 +155,7 @@ Now, that your SW packages are installed, the next step is to enable them as SW 
 
    - *https://www.st.com/resource/en/user_manual/dm00601501-getting-started-with-the-xnucleoiks01a3-motion-mems-and-environmental-sensor-expansion-board-for-stm32-nucleo-stmicroelectronics.pdf*
 
-![7-1](Img\7-1.png)
+<img src="Img\7-1.png" alt="7-1" style="zoom:80%;" />
 
 ​	Check in the Nucleo user manual, which GPIO is available on the PIN5 of the connector CN9.
 
@@ -162,19 +166,19 @@ Now, that your SW packages are installed, the next step is to enable them as SW 
 
 
 
-![7-2](Img\7-2.png)
+<img src="Img\7-2.png" alt="7-2" style="zoom:80%;" />
 
 
 
 Now, go back to your project and enable the **GPIO PB5** in **"GPIO_EXTI5"** *(15)*. Configure it on **"System Core"**, click on **GPIO** and verify the right mode **"external interrupt mode with rising edge trigger detection"**.
 
-![7-3](Img\7-3.png)
+<img src="Img\7-3.png" alt="7-3" style="zoom:80%;" />
 
 
 
 Finally, click on **NVIC** tab and enable the interrupt controller on **EXTI line[9:5] interrupts** *(16)*
 
-![7-4](Img\7-4.png)
+<img src="Img\7-4.png" alt="7-4" style="zoom:80%;" />
 
 8. In this last part, you will configure the SW libraries: X-Cube-AI & X-Cube-MEMS1. As reminder, X-Cube-MEMS1 is a high-level library which will provide the **functions to use the motion sensor**, and X-Cube-AI is the high-level library which will provide the **functions to run neural network model** on STM32.
 
@@ -182,7 +186,7 @@ Finally, click on **NVIC** tab and enable the interrupt controller on **EXTI lin
 
 
 
-![8-1](Img\8-1.png)
+<img src="Img\8-1.png" alt="8-1" style="zoom:80%;" />
 
 
 
@@ -190,13 +194,13 @@ Finally, click on **NVIC** tab and enable the interrupt controller on **EXTI lin
 
 You can upload this model into your project as follow:
 
-![8-2](Img\8-2.png)
+<img src="Img\8-2.png" alt="8-2" style="zoom:80%;" />
 
 
 
 At this stage, all the HW & SW configurations are done. You can generate the software code and start using it.
 
-![8-3](Img\8-3.png)
+<img src="Img\8-3.png" alt="8-3" style="zoom:80%;" />
 
 
 
@@ -208,28 +212,28 @@ In this part, we will handle the software library **X-Cube-MEMS1** generated in 
 
 Let's first have a look to the code generated:
 
-![9-1](Img\9-1.png) 
+<img src="Img\9-1.png" alt="9-1" style="zoom:80%;" /> 
 
-You can notice that in the **"main.c"** file, there are some section with **"USER CODE BEGIN..."** and **"USER CODE END..."**, you should write your code between these sections. Because, when you will need to regenerate some code from **STM3CubeMX**, only the **user code** written between these sections will be saved.
+You can notice that in the `main.c` file, there are some section with `USER CODE BEGIN...` and `USER CODE END...`, you should write your code between these sections. Because, when you will need to regenerate some code from **STM3CubeMX**, only the **user code** written between these sections will be saved.
 
 1. You can start by building the project to make sure that generated code is not raising any compilation error(s).
 
 
 
-![9-2](Img\9-2.png)
+<img src="Img\9-2.png" alt="9-2" style="zoom:80%;" />
 
 
 
-Add the **"headers"** files in the **"main.c"** file in order to import the libraries.
+Add the **"headers"** files in the `main.c` file in order to import the libraries.
 
-*Please note that the **"app_x-cube-ai.h"** is the entry point for **"network.h"** and **"network_data.h"** which both are the main files representing your neural network.*
+*Please note that the `app_x-cube-ai.h` is the entry point for `network.h` and `network_data.h` which both are the files representing your neural network.*
 
 ```c
 #include "iks01a3_motion_sensors_ex.h"
 #include "stdio.h"
 ```
 
-![9-3](Img\9-3.png)
+<img src="Img\9-3.png" alt="9-3" style="zoom:80%;" />
 
 Add your variables to deal with the sensor *(line ~50)*
 
@@ -238,17 +242,17 @@ IKS01A3_MOTION_SENSOR_Axes_t acc_axes;
 volatile uint32_t FlagDataReceived;
 ```
 
-![9-4](Img\9-4.png)
+<img src="Img\9-4.png" alt="9-4" style="zoom: 50%;" />
 
-**"acc_axes"** represents the structure containing acceleration data on x, y and z axis.
+`acc_axes` represents the structure containing acceleration data on x, y and z axis.
 
-**"FlagDataReceived"** is a flag that will indicate when data has been read.
+`FlagDataReceived` is a flag that will indicate when data has been read.
 
 
 
-2. Write the ***"MEMS_Init()"*** function
+2. Write the `MEMS_Init()` function
 
-First, declare prototype of this function *(line ~77, at section "USER CODE BEGIN PFP ")*:
+First, declare prototype of this function *(line ~77, at section `USER CODE BEGIN PFP`)*:
 
 ```c
 static void MEMS_Init();
@@ -260,7 +264,7 @@ static void MEMS_Init();
 
 Then, write the function *(line 266)* which will configure and enable the LSM6DS0 sensor to read acceleration data at **26 Hz**, with a value range between **-4000 mg and +4000 mg**. It's also using the **interrupt mode**.
 
-*(write the following code snippets at section "USER CODE BEGIN 4 ", line ~266)*
+*(write the following code snippets at section `USER CODE BEGIN 4` , line ~266)*
 
 ```c
 /* USER CODE BEGIN 4 */
@@ -308,7 +312,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 }
 ```
 
-Add **"_write()"** function to point the printf function to the serial terminal interface *(USART2)*.
+Add `_write()` function to point the `printf` function to the serial terminal interface *(USART2)*.
 
 ```C
 int _write(int fd, char* buffer, int len){
@@ -352,29 +356,29 @@ Update the following code snippet:
 
 Each time when the data flag is updated in the callback, we will request new acceleration data read.
 
-You can now, **compile** your project and run on the **debug** mode.
+You can now, **compile** your project and run the **debug** mode.
 
-![11-1](C:\Users\nasirm\Documents\backup\Moussa_Doc\Demo\Motions\HAR-Nucleo\Img\11-1.png)
+<img src="Img\11-1.png" alt="11-1" style="zoom:80%;" />
 
 Launch the debug mode **"STM32 Cortex-M C/C++ Applications"**
 
-![11-2](Img\11-2.png)
+<img src="Img\11-2.png" alt="11-2" style="zoom:80%;" />
 
 
 
 Confirm the change of perspective as you will move to the debug menu
 
-![11-3](Img\11-3.png)
+<img src="Img\11-3.png" alt="11-3" style="zoom:80%;" />
 
-In this mode, you can watch the variable **"acc_axes"** where the acceleration data is stored, thanks to the "Live Expressions" feature.
+In this mode, you can watch the variable `acc_axes` where the acceleration data is stored, thanks to the "Live Expressions" feature.
 
-![11-4](Img\11-4.png)
+<img src="Img\11-4.png" alt="11-4" style="zoom:80%;" />
 
 
 
 Finally, **run** the debug mode as indicated below, and check the **data** on **"Live Expressions"** menu. If you shake your board, the values should change.
 
-![11-5](Img\11-5.png)
+<img src="Img\11-5.png" alt="11-5" style="zoom:80%;" />
 
 
 
@@ -386,7 +390,7 @@ At this stage, the sensor is well linked with the STM32, the 2 HW (Nucleo F446 &
 
 
 
-1. Add the following variables in the **"USER CODE BEGIN PV"** section *(line ~49)*
+1. Add the following variables in the `USER CODE BEGIN PV` section *(line ~49)*
 
 ```C
 float ai_in[AI_NETWORK_IN_1_SIZE];
@@ -399,3 +403,87 @@ const char* activities[AI_NETWORK_OUT_1_SIZE] = {
 /* USER CODE END PV */
 ```
 
+The variable `ai_in` represents the input buffer data which will store all the acceleration data. The `ai_out` is the output buffer which will store the neural network output (after running an inference). 
+
+Next, we will use a variable to count the number of data stored inside `ai_in`. The idea is to check the size of this buffer, and run an inference when the buffer is fulfilled.
+
+Add the variable `data_idx` in the section `USER CODE BEGIN 2` *(line ~110)* as follow :
+
+```C
+  /* USER CODE BEGIN 2 */
+  FlagDataReceived = 0;
+  MEMS_Init();
+  uint8_t data_idx = 0;
+  /* USER CODE END 2 */
+```
+
+
+
+2. In your main loop, you can complete your code to store the data inside the `ai_in` buffer and to run AI inference.
+
+
+
+```C
+ /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+// comment this function as we do not need it
+//  MX_X_CUBE_AI_Process();
+
+	  if(FlagDataReceived !=0){
+		  FlagDataReceived = 0;
+		  IKS01A3_MOTION_SENSOR_GetAxes(IKS01A3_LSM6DSO_0, MOTION_ACCELERO, &acc_axes);
+	  /* Normalization between -1 and +1 */
+		ai_in[data_idx + 0] = (float) acc_axes.x / 4000.0f;
+		ai_in[data_idx + 1] = (float) acc_axes.y / 4000.0f;
+		ai_in[data_idx + 2] = (float) acc_axes.z / 4000.0f;
+      /* Check if buffer is full */    
+        if(data_idx == AI_NETWORK_1_SIZE){
+           data_idx = 0;
+           printf(\r\n Running AI inference \r\n);
+            /* Run AI inference - check if the inference doesn't occur any error */
+           if(aiRun(ai_in, ai_out) != 0){
+           		printf("Error when running AI inference");
+		   		while(1);
+        	}
+            /* send NN output to the serial terminal */
+            for(uint32_t i=0; i < AI_NETWORK_OUT_1_SIZE; i++)
+                printf(" %s : %.3f", activities[i], ai_out[i]);
+      	  }  
+         data_idx++; 
+       }
+	  /* USER CODE BEGIN 3 */
+  } /* end while loop */
+  /* USER CODE END 3 */
+} /* end main function */
+```
+
+In this while loop, the first condition `if` is checking whenever we **received acceleration data**. The second condition `if` is checking whenever the **input buffer is complete** and then we can run an inference. Finally, the third condition `if` is validating that the **inference is running** without any error(s).
+
+
+
+3. Now, you can build your project and run it on the target as follow:
+
+
+
+<img src="Img\12-1.png" alt="12-1" style="zoom:80%;" />
+
+
+
+Once you got the following message `Download verified successfully` in the console, it means that the code has been well flashed on board. You can open a serial terminal to check the NN output. STM32CubeIDE is providing such tool *(see on bottom right side)*.
+
+<img src="Img\12-2.png" alt="12-2" style="zoom:80%;" />
+
+Then, configure you serial terminal as follow:
+
+<img src="Img\12-3.png" alt="12-3" style="zoom:80%;" />
+
+
+
+<img src="Img\12-4.png" alt="12-4" style="zoom:80%;" />
+
+If you can see the activities in the terminal console, it means your code is working well.
+
+Congratulation! At this stage, you successfully achieved this workshop! :)
