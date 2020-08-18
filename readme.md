@@ -44,7 +44,7 @@ Launch **STM32CubeIDE 1.14.0**, click on **"Help"**, and on **"ST-LINK Upgrade"*
 
 Click on **"Open in update mode"** and finally click on **"Upgrade"**
 
-![STLINK](Img\STLINK.png)
+<img src="Img\STLINK.png" alt="STLINK" style="zoom:80%;" />
 
 
 
