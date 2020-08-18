@@ -16,7 +16,7 @@ A motions MEMS shield X-Nucleo-IKS01A3, and finally a mini USB cable.
 
 The expansion MEMS shield is plugged on top of the Nucleo board which is connected to your PC with mini USB cable. See the below picture for your reference.
 
-<img src="Img\nucleo+shield.jpg" alt="nucleo+shield" style="zoom: 30%;" />
+<img src="Img\nucleo+shield.jpg" alt="nucleo+shield" style="zoom: 25%;" />
 
 
 
@@ -58,7 +58,7 @@ In this section, we will get familiar with CubeIDE & CubeMX tools.
 
    
 
-   <img src="Img\3-3.png" alt="3-3" style="zoom: 50%;" />
+   <img src="Img\3-3.png" alt="3-3" style="zoom: 33%;" />
 
    
 
@@ -111,7 +111,7 @@ Click on **"From Local..."** to **select your zip folder which you downloaded fr
 
 <img src="Img\4-4-2.png" alt="4-4-2" style="zoom:80%;" />
 
-<img src="C:\Users\nasirm\Documents\backup\Moussa_Doc\Demo\Motions\HAR-Nucleo\Img\4-4-3.png" alt="4-4-3" style="zoom:80%;" />
+<img src="Img\4-4-3.png" alt="4-4-3" style="zoom: 67%;" />
 
 You need to do this operation for both packages **X-Cube-AI** & **X-Cube-MEMS1**
 
@@ -186,9 +186,9 @@ Finally, click on **NVIC** tab and enable the interrupt controller on **EXTI lin
 
 
 
-1. In this last part, you will configure the SW libraries: **X-Cube-AI** & **X-Cube-MEMS1**. As reminder, X-Cube-MEMS1 is a high-level library which will provide the **functions to use the motion sensor**, and X-Cube-AI is the high-level library which will provide the **functions to run neural network model** on STM32.
+8. In this last part, you will configure the SW libraries: **X-Cube-AI** & **X-Cube-MEMS1**. As reminder, X-Cube-MEMS1 is a high-level library which will provide the **functions to use the motion sensor**, and X-Cube-AI is the high-level library which will provide the **functions to run neural network model** on STM32.
 
-   Click on **"Additional software"** and start with **X-Cube-MEMS1** *(17)*, at this stage, you first need to **check "Board Extension MEMS"** to enable the library for the expansion shield. Then, click on **"Platform Setting"** and select **I2C1** *(18)*.
+Click on **"Additional software"** and start with **X-Cube-MEMS1** *(17)*, at this stage, you first need to **check "Board Extension MEMS"** to enable the library for the expansion shield. Then, click on **"Platform Setting"** and select **I2C1** *(18)*.
 
 
 
@@ -218,7 +218,7 @@ In this part, we will handle the software library **X-Cube-MEMS1** generated in 
 
 Let's first have a look to the code generated:
 
-<img src="Img\9-1.png" alt="9-1" style="zoom:80%;" /> 
+<img src="Img\9-1.png" alt="9-1" style="zoom: 67%;" /> 
 
 You can notice that in the `main.c` file, there are some section with `USER CODE BEGIN...` and `USER CODE END...`, you should write your code between these sections. Because, when you will need to regenerate some code from **STM3CubeMX**, only the **user code** written between these sections will be saved.
 
@@ -230,7 +230,7 @@ You can notice that in the `main.c` file, there are some section with `USER CODE
 
 
 
-<img src="Img\9-2.png" alt="9-2" style="zoom:80%;" />
+<img src="Img\9-2.png" alt="9-2" style="zoom: 67%;" />
 
 
 
@@ -256,7 +256,7 @@ IKS01A3_MOTION_SENSOR_Axes_t acc_axes;
 volatile uint32_t FlagDataReceived;
 ```
 
-<img src="Img\9-4.png" alt="9-4" style="zoom: 50%;" />
+<img src="Img\9-4.png" alt="9-4" style="zoom: 33%;" />
 
 `acc_axes` represents the structure containing acceleration data on x, y and z axis.
 
@@ -272,7 +272,7 @@ First, declare prototype of this function *(line ~77, at section `USER CODE BEGI
 static void MEMS_Init();
 ```
 
-<img src="Img\10.png" alt="10" style="zoom:50%;" />
+<img src="Img\10.png" alt="10" style="zoom: 33%;" />
 
 
 
@@ -372,7 +372,7 @@ Each time when the data flag is updated in the callback, we will request **new a
 
 You can now, **compile** your project and run the **debug** mode.
 
-<img src="Img\11-1.png" alt="11-1" style="zoom:80%;" />
+<img src="Img\11-1.png" alt="11-1" style="zoom: 67%;" />
 
 Launch the debug mode **"STM32 Cortex-M C/C++ Applications"**
 
@@ -482,7 +482,7 @@ In this loop, the first condition `if` is checking whenever we **received accele
 
 
 
-<img src="Img\12-1.png" alt="12-1" style="zoom:80%;" />
+<img src="Img\12-1.png" alt="12-1" style="zoom: 67%;" />
 
 
 
