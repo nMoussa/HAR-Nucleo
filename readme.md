@@ -38,13 +38,21 @@ The expansion MEMS shield is plugged on top of the Nucleo board which is connect
 
 **STM32CubeIDE** is based on eclipse, it's using **GNU C/C++** compiler and **GDB** debugger. It supports **ST-Link** which is the main HW interface to flash and debug embedded C code on STM32.
 
-It also includes **STM32CubeMX** which is a **project generation tool for STM32**. In fact, this tool provides a friendly graphical interface to initialize MCU HW peripherals, clock, pinout and middleware.  A FW is then generated and ready to use.
+The ST-Link is composed by a MCU itself, you can find it on top side of the Nucleo board (near the mini USB port). You will first need to **update the ST-Link firmware** in order to flash and debug on the main STM32.
+
+Launch **STM32CubeIDE 1.14.0**, click on **"Help"**, and on **"ST-LINK Upgrade"**.
+
+Click on **"Open in update mode"** and finally click on **"Upgrade"**
+
+![STLINK](Img\STLINK.png)
+
+
+
+**STM32CubeIDE** also includes **STM32CubeMX** which is a **project generation tool for STM32**. In fact, this tool provides a friendly graphical interface to initialize MCU HW peripherals, clock, pinout and middleware.  A FW is then generated and ready to use.
 
 In this section, we will get familiar with CubeIDE & CubeMX tools.
 
-
-
-1. Launch STM32CubeIDE 1.14.0 software and start with a **new STM32 Project** as described below:
+1. With STM32CubeIDE 1.14.0 software, start a **new STM32 Project** as described below:
 
 <img src="Img/3-1.png" alt="3-1"  />
 
@@ -62,7 +70,7 @@ In this section, we will get familiar with CubeIDE & CubeMX tools.
 
    
 
-4. Check that you will use the latest STM32Cube FW *(for F4 it's 1.25)*. Then, click on **"finish"** to complete project creation. If you got a window saying if you want to initialize the **peripheral by default ?** click on **"no"**.
+4. Check that you will use the latest STM32Cube FW *(for F4 it's 1.25)*. Then, click on **"finish"** to complete project creation. If you got a window saying if you want to initialize the **peripheral by default ?** click on **"No"**.
 
    In fact, STM32CubeMX tool can help you to initialize a new project, but during this workshop, you will learn to do it by yourself.
 
