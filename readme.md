@@ -16,7 +16,7 @@ A motions MEMS shield X-Nucleo-IKS01A3, and finally a mini USB cable.
 
 The expansion MEMS shield is plugged on top of the Nucleo board which is connected to your PC with mini USB cable. See the below picture for your reference.
 
-<img src="Img\nucleo+shield.jpg" alt="nucleo+shield" style="zoom: 25%;" />
+<img src="Img\nucleo+shield.jpg" alt="nucleo+shield" style="zoom: 80%;" />
 
 
 
@@ -58,7 +58,7 @@ In this section, we will get familiar with CubeIDE & CubeMX tools.
 
    
 
-   <img src="Img\3-3.png" alt="3-3" style="zoom: 33%;" />
+   <img src="Img\3-3.png" alt="3-3"  />
 
    
 
@@ -230,7 +230,7 @@ You can notice that in the `main.c` file, there are some section with `USER CODE
 
 
 
-<img src="Img\9-2.png" alt="9-2" style="zoom: 67%;" />
+<img src="Img\9-2.png" alt="9-2" style="zoom: 80%;" />
 
 
 
@@ -256,7 +256,7 @@ IKS01A3_MOTION_SENSOR_Axes_t acc_axes;
 volatile uint32_t FlagDataReceived;
 ```
 
-<img src="Img\9-4.png" alt="9-4" style="zoom: 33%;" />
+<img src="Img\9-4.png" alt="9-4"  />
 
 `acc_axes` represents the structure containing acceleration data on x, y and z axis.
 
@@ -272,7 +272,7 @@ First, declare prototype of this function *(line ~77, at section `USER CODE BEGI
 static void MEMS_Init();
 ```
 
-<img src="Img\10.png" alt="10" style="zoom: 33%;" />
+<img src="Img\10.png" alt="10"  />
 
 
 
