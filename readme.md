@@ -33,6 +33,7 @@ The expansion MEMS shield is plugged on top of the Nucleo board which is connect
   - https://www.st.com/content/st_com/en/products/embedded-software/mcu-mpu-embedded-software/stm32-embedded-software/stm32cube-expansion-packages/x-cube-mems1.html#overview](https://www.st.com/content/st_com/en/products/embedded-software/mcu-mpu-embedded-software/stm32-embedded-software/stm32cube-expansion-packages/x-cube-mems1.html
 - **<u>STM32F4Cube FW</u>**
   - Back-end library to use STM32 HAL & BSP (depend on your Nucleo board, the example uses F4)
+  - https://www.st.com/content/st_com/en/products/embedded-software/mcu-mpu-embedded-software/stm32-embedded-software/stm32cube-mcu-mpu-packages/stm32cubef4.html
 
 ## Start & configure your project with STM32CubeIDE
 
@@ -50,7 +51,25 @@ Click on **"Open in update mode"** and finally click on **"Upgrade"**
 
 **STM32CubeIDE** also includes **STM32CubeMX** which is a **project generation tool for STM32**. In fact, this tool provides a friendly graphical interface to initialize MCU HW peripherals, clock, pinout and middleware.  A FW is then generated and ready to use.
 
-In this section, we will get familiar with CubeIDE & CubeMX tools.
+Any **STM32 Project** will require some **back-end** libraries. There are mainly 2 kind of back-end libraries, the **HAL** (Hardware Abstraction Layer) which are the libraries to use the core functions/peripherals of the MCU and **BSP** (Board specific components) which are the libraries to use the external component on a board (external memories, LCD, camera...). Those libraries are included inside the **STM32CubeF4 FW** which is a SW requirement in order to use STM32CubeIDE.
+
+We will link the zip file STM32CubeF4 which you downloaded during the SW prerequisites, on STM32CubeIDE as follow :
+
+Click on **"Help"** menu, and on **"Manage Embedded Software Packages"**
+
+<img src="Img\CubeF4-1.png" alt="CubeF4-1" style="zoom:80%;" />
+
+
+
+Click on **"From Local..."** *(bottom left)* and select your **zip** file, then click on **"Install Now"**  *(bottom right)*
+
+<img src="Img\CubeF4-2.png" alt="CubeF4-2" style="zoom:80%;" />
+
+
+
+
+
+You can now start with the first section, where you will get familiar with CubeIDE & CubeMX tools.
 
 1. With STM32CubeIDE 1.14.0 software, start a **new STM32 Project** as described below:
 
