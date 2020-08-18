@@ -210,10 +210,192 @@ Let's first have a look to the code generated:
 
 ![9-1](Img\9-1.png) 
 
-You can notice that in the **main.c** file, there are some section with **"USER CODE BEGIN..."** and **"USER CODE END..."**, you should write your code between these sections. Because, when you will need to regenerate some code from **STM3CubeMX**, only the **user code** written between these sections will be saved.
+You can notice that in the **"main.c"** file, there are some section with **"USER CODE BEGIN..."** and **"USER CODE END..."**, you should write your code between these sections. Because, when you will need to regenerate some code from **STM3CubeMX**, only the **user code** written between these sections will be saved.
 
 1. You can start by building the project to make sure that generated code is not raising any compilation error(s).
 
 
 
 ![9-2](Img\9-2.png)
+
+
+
+Add the **"headers"** files in the **"main.c"** file in order to import the libraries.
+
+*Please note that the **"app_x-cube-ai.h"** is the entry point for **"network.h"** and **"network_data.h"** which both are the main files representing your neural network.*
+
+```c
+#include "iks01a3_motion_sensors_ex.h"
+#include "stdio.h"
+```
+
+![9-3](Img\9-3.png)
+
+Add your variables to deal with the sensor *(line ~50)*
+
+```c
+IKS01A3_MOTION_SENSOR_Axes_t acc_axes;
+volatile uint32_t FlagDataReceived;
+```
+
+![9-4](Img\9-4.png)
+
+**"acc_axes"** represents the structure containing acceleration data on x, y and z axis.
+
+**"FlagDataReceived"** is a flag that will indicate when data has been read.
+
+
+
+2. Write the ***"MEMS_Init()"*** function
+
+First, declare prototype of this function *(line ~77, at section "USER CODE BEGIN PFP ")*:
+
+```c
+static void MEMS_Init();
+```
+
+![10-1](Img\10-1.png)
+
+
+
+Then, write the function *(line 266)* which will configure and enable the LSM6DS0 sensor to read acceleration data at **26 Hz**, with a value range between **-4000 mg and +4000 mg**. It's also using the **interrupt mode**.
+
+*(write the following code snippets at section "USER CODE BEGIN 4 ", line ~266)*
+
+```c
+/* USER CODE BEGIN 4 */
+
+static void MEMS_Init(){
+
+/* Link BSP function to IKS01A3 API and initialize sensor LSM6DSO */
+ IKS01A3_MOTION_SENSOR_Init(IKS01A3_LSM6DSO_0, MOTION_ACCELERO);
+ uint8_t id;
+ IKS01A3_MOTION_SENSOR_AxesRaw_t axes;
+
+/* Read sensor ID, and validate initialization */
+ if(IKS01A3_MOTION_SENSOR_ReadID(IKS01A3_LSM6DSO_0, &id) != BSP_ERROR_NONE){
+ 	printf("Error sensor ID \n\r");
+ 	while(1);
+ 	}
+/* Set output data rate (accelerometer frequency), and value range between [-4000 mg; +4000 mg]  */
+	IKS01A3_MOTION_SENSOR_SetOutputDataRate(IKS01A3_LSM6DSO_0, MOTION_ACCELERO, 26.0f);
+	IKS01A3_MOTION_SENSOR_SetFullScale(IKS01A3_LSM6DSO_0, MOTION_ACCELERO, 4);
+/* Enable interrupt mode on pin INT1 */
+	if(IKS01A3_MOTION_SENSOR_DRDY_Enable_Interrupt(IKS01A3_LSM6DSO_0,MOTION_ACCELERO,
+					 	IKS01A3_MOTION_SENSOR_INT1_PIN) != BSP_ERROR_NONE) {
+		printf("Error sensor interrupt setting \n\r");
+		while(1);
+	}
+/* Read data to clear the DRDY (interrupt flag) */
+	IKS01A3_MOTION_SENSOR_GetAxesRaw(IKS01A3_LSM6DSO_0, MOTION_ACCELERO, &axes);
+/* Enable the accelerometer and ready to use it*/
+	IKS01A3_MOTION_SENSOR_Enable(IKS01A3_LSM6DSO_0, MOTION_ACCELERO);
+}
+/* end function */
+```
+
+
+
+Add the callback function which is called each time when data is read. A flag is updated in this callback function.
+
+```c
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+
+	if(GPIO_Pin == GPIO_PIN_5){
+		FlagDataReceived++;
+	}
+
+}
+```
+
+Add **"_write()"** function to point the printf function to the serial terminal interface *(USART2)*.
+
+```C
+int _write(int fd, char* buffer, int len){
+
+	HAL_UART_Transmit(&huart2, (uint8_t *) buffer, len, HAL_MAX_DELAY);
+
+}
+/* USER CODE END 4 */
+```
+
+
+
+3. Go to the main loop function to write your application code (line ~87)
+
+Update the following code snippet:
+
+```C
+  /* USER CODE BEGIN 2 */
+  FlagDataReceived = 0;
+  MEMS_Init();
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+// comment this function as we do not need it
+//  MX_X_CUBE_AI_Process();
+
+	  if(FlagDataReceived !=0){
+		  FlagDataReceived = 0;
+		  IKS01A3_MOTION_SENSOR_GetAxes(IKS01A3_LSM6DSO_0, MOTION_ACCELERO, &acc_axes);
+	  }
+
+	  /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+```
+
+Each time when the data flag is updated in the callback, we will request new acceleration data read.
+
+You can now, **compile** your project and run on the **debug** mode.
+
+![11-1](C:\Users\nasirm\Documents\backup\Moussa_Doc\Demo\Motions\HAR-Nucleo\Img\11-1.png)
+
+Launch the debug mode **"STM32 Cortex-M C/C++ Applications"**
+
+![11-2](Img\11-2.png)
+
+
+
+Confirm the change of perspective as you will move to the debug menu
+
+![11-3](Img\11-3.png)
+
+In this mode, you can watch the variable **"acc_axes"** where the acceleration data is stored, thanks to the "Live Expressions" feature.
+
+![11-4](Img\11-4.png)
+
+
+
+Finally, **run** the debug mode as indicated below, and check the **data** on **"Live Expressions"** menu. If you shake your board, the values should change.
+
+![11-5](Img\11-5.png)
+
+
+
+At this stage, the sensor is well linked with the STM32, the 2 HW (Nucleo F446 & expansion shield IKS01A3) are working together. Acceleration data is being read from the sensor LSM6DSLO. In the next step, we will see how to call a neural network inference on STM32.
+
+
+
+## Write you application code to run AI model inference on STM32
+
+
+
+1. Add the following variables in the **"USER CODE BEGIN PV"** section *(line ~49)*
+
+```C
+float ai_in[AI_NETWORK_IN_1_SIZE];
+float ai_out[AI_NETWORK_OUT_1_SIZE];
+
+const char* activities[AI_NETWORK_OUT_1_SIZE] = {
+		  "stationary", "walking", "running", "driving", "cycling"
+};
+
+/* USER CODE END PV */
+```
+
