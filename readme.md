@@ -8,7 +8,7 @@ This project is providing a step-by-step guide to run human activity recognition
 
 ![NUCLEO-L476RG - STM32 Nucleo-64 development board with STM32L476RG ...](Img/STM32Nucleo.jpg)
 
-A Nucleo board, in this example I will use a STM32L476-Nucleo
+A Nucleo board, in this example I will use a STM32F446-Nucleo
 
 ![X-NUCLEO-IKS01A2 - Motion MEMS and environmental sensor expansion ...](Img/X-Nucleo-IKS01A3.jpg)
 
@@ -34,6 +34,10 @@ The expansion MEMS shield is plugged on top of the Nucleo board which is connect
 - **<u>STM32F4Cube FW</u>**
   - Back-end library to use STM32 HAL & BSP (depend on your Nucleo board, the example uses F4)
   - https://www.st.com/content/st_com/en/products/embedded-software/mcu-mpu-embedded-software/stm32-embedded-software/stm32cube-mcu-mpu-packages/stm32cubef4.html
+
+
+
+
 
 ## Start & configure your project with STM32CubeIDE
 
@@ -119,7 +123,7 @@ As mentioned before, STM32CubeMX is a project configuration tool, you can set al
 
    <img src="Img\4-1.png" alt="4-1" style="zoom:80%;" />
 
-2. Increase the **HCLK** at highest value depend on your Nucleo board (80 MHz for Nucleo L476 and 180 MHz for a F446 Nucleo)
+2. Increase the **HCLK** at highest value depend on your Nucleo board (**180 MHz** for a F446 Nucleo)
 
 <img src="Img\4-2.png" alt="4-2" style="zoom:80%;" />
 
@@ -129,8 +133,6 @@ As mentioned before, STM32CubeMX is a project configuration tool, you can set al
    In this part, we will initialize the **USART** in order to enable a communication between the PC and the STM32. First, let's check in the **user manual** of your Nucleo board about the USART used to support **virtual COM port** between PC & STM32.
    - Nucleo-64
      - *https://www.st.com/resource/en/user_manual/dm00105823-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf*
-   - Nucleo-144
-     * *https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-stmicroelectronics.pdf*
 
 As you can find in the user manual, the **USART2** (pin **PA2 & PA3** of the MCU) is connected to **ST-Link** to support **virtual COM port**.<img src="Img\4-3.png" alt="4-3" style="zoom:80%;" />
 
@@ -168,15 +170,12 @@ So, we need to enable **USART2** and assign his pins on **PA2** and **PA3** of t
 
   - *https://www.st.com/resource/en/user_manual/dm00105823-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf*
 
-- Nucleo-144
-
-  - *https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-stmicroelectronics.pdf*
-
   <img src="Img\5-2.png" alt="5-2" style="zoom:80%;" />
 
   From the information collected on these user manual, in **STM32CubeMX**, we have to enable **I2C1 on PB8 and PB9 of the MCU**.
 
   
+
 
 6. Configure your **I2C1 peripheral** in your project, go on tab **"Connectivity"**
 
@@ -196,8 +195,6 @@ Check out how the external interrupt mode is available on the IKS01A3 expansion 
 
 - Nucleo-64
   - *https://www.st.com/resource/en/user_manual/dm00105823-stm32-nucleo64-boards-mb1136-stmicroelectronics.pdf*
-- Nucleo-144
-  - *https://www.st.com/resource/en/user_manual/dm00244518-stm32-nucleo144-boards-stmicroelectronics.pdf*
 
 
 
@@ -532,3 +529,23 @@ Then, **configure** you serial terminal as follow:
 If you can see the activities in the terminal console, it means your code is working well.
 
 **Congratulation! At this stage, you successfully achieved this workshop! :)**
+
+
+
+
+
+## Additional work(s)
+
+1) In your `main.c` file, in the `while` loop, use `HAL_GetTick()` function to get the inference time of your NN in milliseconds.
+
+```c
+uint32_t start_inference = HAL_GetTick();
+....
+....
+....
+uint32_t stop_inference = HAL_GetTick();
+uint32_t inference_time = stop_inference - start_inference;
+printf("NN inference time : %ld", inference_time);
+```
+
+2) Go back to STM32CubeMX project (double click on the .ioc file inside STM32CubeIDE). In the graphic interface of X-Cube-AI, run the **validation engine** (on desktop mode and on target mode) to test your AI model on STM32 against the initial python model.
