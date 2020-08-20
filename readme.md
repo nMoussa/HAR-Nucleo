@@ -363,7 +363,7 @@ Add `_write()` function to point the `printf` function to the serial terminal in
 int _write(int fd, char* buffer, int len){
 
 	HAL_UART_Transmit(&huart2, (uint8_t *) buffer, len, HAL_MAX_DELAY);
-
+	return len;
 }
 /* USER CODE END 4 */
 ```
