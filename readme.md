@@ -65,11 +65,23 @@ Click on **"From Local..."** *(bottom left)* and select your **zip** file, then 
 
 <img src="Img\CubeF4-2.png" alt="CubeF4-2" style="zoom:80%;" />
 
+The installation process would take around 5 minutes.
+
+Next, you can install **X-Cube-MEMS1** and **X-Cube-AI** over this same process.
+
+Switch to **"STMicroelectronics"** tab, click on **"From Local..."** and select the file **"STMicroelectronics.X-CUBE-AI.5.1.2.pack"** *(see below picture)*.
+
+<img src="Img\CubeAI.png" alt="CubeAI"  />
 
 
 
+**Caution point**, for **X-Cube-MEMS1**, you cannot install it from a local file *(known internal bug)*. You will need an **internet connection** to do an online installation. Select the latest version of X-Cube-MEMS1 and click on **"Install Now"** as shown below
 
-You can now start with the first section, where you will get familiar with CubeIDE & CubeMX tools.
+<img src="Img\CubeMEMS.png" alt="CubeMEMS"  />
+
+As it will download 100 MB of files, it may take some time.
+
+After these installation steps, you can start the first part of this workshop, where you will get familiar with CubeIDE & CubeMX tools.
 
 1. With STM32CubeIDE 1.14.0 software, start a **new STM32 Project** as described below:
 
@@ -130,21 +142,13 @@ So, we need to enable **USART2** and assign his pins on **PA2** and **PA3** of t
 
 
 
-4. Install and enable SW packages: **X-Cube-AI** & **X-Cube-MEMS1**
+4. Enable SW packages **X-Cube-AI** & **X-Cube-MEMS1** for your project.
 
-<img src="Img\4-4.png" alt="4-4" style="zoom:80%;" /> 
-
-Click on **"From Local..."** to **select your zip folder which you downloaded from ST website** during the SW prerequisites. Once you have selected the zip folder, click on **"Install Now"**.
-
-<img src="Img\4-4-2.png" alt="4-4-2" style="zoom:80%;" />
-
-<img src="Img\4-4-3.png" alt="4-4-3" style="zoom: 67%;" />
-
-You need to do this operation for both packages **X-Cube-AI** & **X-Cube-MEMS1**
-
-Now, that your SW packages are installed, the next step is to enable them as SW components in your project.
+   **Caution point**, when you will enable X-Cube-AI, it would **download and install some additional files**, thus you need an **internet connection** before doing the below steps. This installation will require some time, as it will download and install around **1GB** of additional files. In the meantime, you can continue with the next section 5.
 
 <img src="Img\4-4-4.png" alt="4-4-4" style="zoom:80%;" />
+
+<u>**Reminder:**</u>
 
 **X-Cube-AI core** is the code generator tool which can read an input pre-trained model from any framework (Keras, TF Lite, ONNX) , and then generate the C-library (or AI C-model). The **ApplicationTemplate** is a top-level code template to show you how to use the AI C-library.
 
