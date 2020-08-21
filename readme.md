@@ -1,6 +1,6 @@
 # HAR-Nucleo
 
-This project is providing a step-by-step guide to run human activity recognition on any STM32 nucleo boards based on a Cortex M4 or M7. In addition, you will need an arduino extension shield "X-Nucleo-IKS01A3" which corresponds to motions MEMS sensors.
+This git repository is providing a step-by-step guide to run human activity recognition on any STM32 nucleo boards based on a Cortex M4 or M7. In addition, you will need an arduino extension shield "X-Nucleo-IKS01A3" which corresponds to motions MEMS sensors.
 
 
 
@@ -146,7 +146,7 @@ So, we need to enable **USART2** and assign his pins on **PA2** and **PA3** of t
 
 4. Enable SW packages **X-Cube-AI** & **X-Cube-MEMS1** for your project.
 
-   **Caution point**, when you will enable X-Cube-AI, it would **download and install some additional files**, thus you need an **internet connection** before doing the below steps. This installation will require some time, as it will download and install around **1GB** of additional files. In the meantime, you can continue with the next section 5.
+   **Caution point**, when you will enable X-Cube-AI, it would **download and install some additional files**, thus you need an **internet connection** before doing the below steps. This installation will require some time, as it will download and install around **300MB** of additional files. In the meantime, you can continue with the next section 5.
 
 <img src="Img\4-4-4.png" alt="4-4-4" style="zoom:80%;" />
 
@@ -549,3 +549,19 @@ printf("NN inference time : %ld", inference_time);
 ```
 
 2) Go back to STM32CubeMX project (double click on the .ioc file inside STM32CubeIDE). In the graphic interface of X-Cube-AI, run the **validation engine** (on desktop mode and on target mode) to test your AI model on STM32 against the initial python model.
+
+3) Add a **post-processing** function to get the activity which has the highest value (considering the NN output buffer).
+
+4) Download a public **human activity recognition dataset** from https://www.cis.fordham.edu/wisdm/dataset.php and retrain the AI model (or build your own) using an AI framework like Keras. Then, use what you have learned during this workshop to deploy the new AI model on STM32 target! :)
+
+5) The expansion shield IKS01A3 has a **sensor LSM6DSO** which contains an **embedded machine learning core**. It's based on some **finite state machine** which can be used to classify human activities. Check the application note *(https://www.st.com/resource/en/application_note/dm00537590-lsm6dso-finite-state-machine-stmicroelectronics.pdf)* and learn how to use this sensor machine learning core. 
+
+## Useful links
+
+- X-Cube-AI user manual
+  - https://www.st.com/resource/en/user_manual/dm00570145-getting-started-with-xcubeai-expansion-package-for-artificial-intelligence-ai-stmicroelectronics.pdf
+- FP-AI-Sensing1 SW solution to learn more on motion sensing & audio applications running on STM32
+  - https://www.st.com/content/ccc/resource/sales_and_marketing/presentation/product_presentation/group0/9c/54/70/d9/9b/e7/4c/8f/FP-AI-SENSING1_QUICK_START_GUIDE/files/fp-ai-sensing1_quick_start_guide.pdf/jcr:content/translations/en.fp-ai-sensing1_quick_start_guide.pdf
+- FP-AI-Vision1 SW solution to learn more on computer vision applications running on STM32
+  - https://www.st.com/resource/en/user_manual/dm00630755-artificial-intelligence-ai-and-computer-vision-function-pack-for-stm32h7-microcontrollers-stmicroelectronics.pdf
+
